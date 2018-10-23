@@ -1,43 +1,43 @@
 <?php
-class container
+class water
 {
-    
-    const hot=100;
-    const cold=10;
-    function __construct()
-    {
-        $container_depth=100;
-        addWater();
+    const COLD=0;
+    const  HOT=1;
+    const DEEP_DEPTH=100;
+    var $isFull = false;
+    var $current_depth=0;
+    var $current_temp =self::COLD;
+    function __construct(){
+        $this->addWater(self::HOT);
+        $this->FillVessal();
     }
-    
-    function addWater()
-    {
-       //add water to containe;
-       container_depth=container_depth-water;
-        checkTemprature();
-        //check temprature will take two arguments
-        1.temprature
-        2.container_depth
+    function checkDepth(){
+        //will tell us the actual depth
+        return $this->current_depth;
     }
-    
-    function checkDepth()
-    {
-        if(depth==max)
-            exit;
-        else
-            call addWater;
+    function checkTempatarue() {
+        return $this->current_temp ;
     }
-    
-    function checkTemprature()
-    {
-        if(temprature==too_hot)
-            add cold water;
-        call checkdepth
-        else add hot water;
-        call checkdepth
-        
+    function addWater($param) {
+        //depending upon params a five unit of hot or cold water is added
+        if($param == self::HOT){
+        //add 5 unit of hot water
+            $this->current_temp=self::HOT;
+        }else {
+            //add 5 unit of cold water
+            $this->current_temp=self::COLD;
+        }
+        $this->current_depth+=5;
+        echo " curent temp  $this->current_temp  current depth $this->current_depth \n";
     }
-    
-    
-    
+    function FillVessal(){
+        while($this->checkDepth()!= self::DEEP_DEPTH && !$this->isFull){
+            $this->addWater($this->checkTempatarue()==self::HOT?self::COLD:self::HOT);
+        }
+    }
 }
+
+$app = new water();
+//$app->FillVessal();
+?>
+
